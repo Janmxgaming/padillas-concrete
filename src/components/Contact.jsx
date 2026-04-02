@@ -119,23 +119,20 @@ export default function Contact() {
         language: navigator.language
       };
 
-      // TODO: Integrar con Cloudflare Workers
-      // Descomentar el siguiente código cuando esté listo el backend:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(dataToSend)
-      // });
-      // 
-      // if (!response.ok) throw new Error('Failed to send');
+      const apiBase = import.meta.env.DEV
+        ? 'http://localhost:8787/api'
+        : 'https://padillas-concrete-api.angel-padillaf-dev.workers.dev/api';
 
-      // Simulación de envío exitoso (2 segundos)
-      // Eliminar esta línea cuando se implemente el backend real
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch(`${apiBase}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend),
+      });
 
-      // Debug log (only in development)
-      if (import.meta.env.DEV) {
-        console.log('Form data ready for backend:', dataToSend);
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.errorEs || result.error || 'Failed to send');
       }
 
       // Cerrar loading y mostrar éxito
