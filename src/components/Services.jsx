@@ -3,13 +3,13 @@ import { Armchair, Car, Footprints, LayoutGrid, Layers, Stamp, Wrench } from 'lu
 import SectionHeader from './SectionHeader';
 
 const SERVICES = [
-  { icon: Armchair,   key: 'service1' },
-  { icon: Car,        key: 'service2' },
+  { icon: Armchair, key: 'service1' },
+  { icon: Car, key: 'service2' },
   { icon: Footprints, key: 'service3' },
   { icon: LayoutGrid, key: 'service4' },
-  { icon: Layers,     key: 'service5' },
-  { icon: Stamp,      key: 'service6' },
-  { icon: Wrench,     key: 'service7' },
+  { icon: Layers, key: 'service5' },
+  { icon: Stamp, key: 'service6' },
+  { icon: Wrench, key: 'service7' },
 ];
 
 export default function Services() {
