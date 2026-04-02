@@ -322,8 +322,8 @@ export default function Contact() {
               type="submit"
               disabled={isSubmitting}
               className={`w-full py-4 rounded-lg font-semibold text-white transition ${isSubmitting
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-red-600 hover:bg-red-700'
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-red-600 hover:bg-red-700'
                 }`}
             >
               {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
