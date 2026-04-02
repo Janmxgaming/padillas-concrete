@@ -92,7 +92,7 @@ export const closeAlert = () => Swal.close();
  * Show form dialog with custom HTML
  * @returns {Promise<object|null>} Form values or null if cancelled
  */
-export const showFormDialog = async ({ title, html, preConfirm, confirmText = 'Save', allowClose = true }) => {
+export const showFormDialog = async ({ title, html, preConfirm, confirmText = 'Save', allowClose = true, didOpen }) => {
   const { value } = await Swal.fire({
     title,
     html,
@@ -103,6 +103,7 @@ export const showFormDialog = async ({ title, html, preConfirm, confirmText = 'S
     allowEscapeKey: allowClose,
     confirmButtonText: confirmText,
     preConfirm,
+    ...(didOpen && { didOpen }),
   });
   return value || null;
 };
