@@ -25,18 +25,18 @@ import { Image, Users, Plus, Loader2 } from 'lucide-react';
 export default function AdminDashboard() {
     const { user, logout, updateUser: updateAuthUser } = useAuth();
     const navigate = useNavigate();
-    
+
     // State
     const [projects, setProjects] = useState([]);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [expandedProject, setExpandedProject] = useState(null);
     const [activeTab, setActiveTab] = useState('projects');
-    
+
     // File upload refs
     const fileInputRef = useRef(null);
     const [uploadTarget, setUploadTarget] = useState(null); // { projectId, type }
-    
+
     const isAdmin = user?.role === 'admin';
     const isEditor = user?.role === 'user';
 
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
     // ==========================================================================
     // Data Loading
     // ==========================================================================
-    
+
     async function loadProjects() {
         try {
             const data = await getProjects();
@@ -443,11 +443,10 @@ function TabButton({ active, onClick, icon, label }) {
     return (
         <button
             onClick={onClick}
-            className={`pb-3 px-2 font-medium transition-colors ${
-                active
+            className={`pb-3 px-2 font-medium transition-colors ${active
                     ? 'text-red-500 border-b-2 border-red-500'
                     : 'text-gray-400 hover:text-white'
-            }`}
+                }`}
         >
             {icon}
             {label}
