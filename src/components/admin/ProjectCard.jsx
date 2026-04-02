@@ -7,6 +7,7 @@ export default function ProjectCard({
     project,
     isExpanded,
     isAdmin,
+    isEditor,
     onToggle,
     onEdit,
     onDelete,
@@ -38,6 +39,9 @@ export default function ProjectCard({
                         <p className="text-gray-400 text-sm">
                             {project.location || 'No location'} • {photoCount} photos
                         </p>
+                        {isAdmin && project.createdBy && (
+                            <p className="text-gray-500 text-xs mt-0.5">by {project.createdBy}</p>
+                        )}
                     </div>
                 </div>
 
@@ -48,20 +52,20 @@ export default function ProjectCard({
                         </span>
                     )}
                     {isAdmin && (
-                        <>
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onEdit(); }}
-                                className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
-                            >
-                                <Edit className="w-5 h-5" />
-                            </button>
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onDelete(); }}
-                                className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-700 rounded-lg transition-colors"
-                            >
-                                <Trash2 className="w-5 h-5" />
-                            </button>
-                        </>
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onEdit(); }}
+                            className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                            <Edit className="w-5 h-5" />
+                        </button>
+                    )}
+                    {(isAdmin || isEditor) && (
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onDelete(); }}
+                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                            <Trash2 className="w-5 h-5" />
+                        </button>
                     )}
                     {isExpanded ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
                 </div>

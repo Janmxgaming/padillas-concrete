@@ -38,6 +38,7 @@ export default function AdminDashboard() {
     const [uploadTarget, setUploadTarget] = useState(null); // { projectId, type }
     
     const isAdmin = user?.role === 'admin';
+    const isEditor = user?.role === 'user';
 
     // Initialize dialogs hook
     const dialogs = useAdminDialogs({
@@ -398,7 +399,7 @@ export default function AdminDashboard() {
                     <div>
                         <SectionHeader
                             title="Gallery Projects"
-                            onAdd={isAdmin ? handleCreateProject : null}
+                            onAdd={isAdmin || isEditor ? handleCreateProject : null}
                             addLabel="New Project"
                         />
 
@@ -416,6 +417,7 @@ export default function AdminDashboard() {
                                         project={project}
                                         isExpanded={expandedProject === project.id}
                                         isAdmin={isAdmin}
+                                        isEditor={isEditor}
                                         onToggle={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
                                         onEdit={() => handleEditProject(project)}
                                         onDelete={() => handleDeleteProject(project)}

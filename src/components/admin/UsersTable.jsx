@@ -67,7 +67,7 @@ function RoleBadge({ role }) {
     return (
         <span className={`px-2 py-1 rounded text-xs ${isAdmin ? 'bg-red-600/20 text-red-400' : 'bg-blue-600/20 text-blue-400'
             }`}>
-            {isAdmin ? 'Admin' : 'User'}
+            {isAdmin ? 'Admin' : 'Editor'}
         </span>
     );
 }

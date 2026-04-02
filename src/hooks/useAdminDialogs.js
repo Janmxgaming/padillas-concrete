@@ -42,7 +42,7 @@ const templates = {
         <input id="swal-username" class="swal2-input" placeholder="Username" value="${data.username || ''}" required>
         ${passField('swal-password', data.id ? 'New Password (leave empty to keep)' : 'Password (min 6 chars)')}
         <select id="swal-role" class="swal2-select">
-            <option value="user" ${data.role === 'user' ? 'selected' : ''}>User (Photos only)</option>
+            <option value="user" ${data.role === 'user' ? 'selected' : ''}>Editor (Projects &amp; Photos)</option>
             <option value="admin" ${data.role === 'admin' ? 'selected' : ''}>Admin (Full access)</option>
         </select>
     `,
