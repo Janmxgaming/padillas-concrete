@@ -3,160 +3,94 @@ import SectionHeader from './SectionHeader';
 
 // Professional SVG Icons for concrete services
 const Icons = {
-  // Patio: Outdoor furniture with umbrella on concrete slab
+  // Patio: Umbrella with table
   patio: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Concrete slab base */}
-      <path d="M4 52h56M8 52l4-8h40l4 8" fill="currentColor" fillOpacity="0.1" />
-      {/* Umbrella */}
-      <path d="M32 12v28" />
-      <path d="M16 20c0-8 7-12 16-12s16 4 16 12" strokeWidth="2.5" />
-      <path d="M16 20c4-2 8-3 16-3s12 1 16 3" />
-      {/* Table */}
-      <ellipse cx="32" cy="40" rx="12" ry="3" fill="currentColor" fillOpacity="0.2" />
-      <path d="M24 40v8M40 40v8" />
-      {/* Chair hints */}
-      <rect x="10" y="42" width="6" height="8" rx="1" fill="currentColor" fillOpacity="0.15" />
-      <rect x="48" y="42" width="6" height="8" rx="1" fill="currentColor" fillOpacity="0.15" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M2 10C2 5.03 6.48 2 12 2s10 3.03 10 8H2z" />
+      <line x1="12" y1="10" x2="12" y2="20" />
+      <path d="M7 16h10" />
+      <line x1="9" y1="16" x2="9" y2="20" />
+      <line x1="15" y1="16" x2="15" y2="20" />
+      <path d="M6 20h12" />
     </svg>
   ),
 
-  // Driveway: Car on concrete driveway leading to garage
+  // Driveway: Road in perspective
   driveway: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Garage */}
-      <path d="M12 8h40l4 20H8L12 8z" fill="currentColor" fillOpacity="0.1" />
-      <path d="M8 28h48v4H8z" fill="currentColor" fillOpacity="0.2" />
-      {/* Garage door */}
-      <rect x="20" y="12" width="24" height="16" rx="1" />
-      <path d="M20 16h24M20 20h24M20 24h24" strokeWidth="1" />
-      {/* Driveway perspective */}
-      <path d="M16 32l-8 28h48l-8-28" fill="currentColor" fillOpacity="0.15" />
-      <path d="M16 32h32M12 44h40M8 56h48" strokeWidth="1.5" />
-      {/* Car silhouette */}
-      <path d="M22 48c0-2 2-4 6-4h8c4 0 6 2 6 4v4H22v-4z" fill="currentColor" fillOpacity="0.3" />
-      <circle cx="26" cy="52" r="2" fill="currentColor" />
-      <circle cx="38" cy="52" r="2" fill="currentColor" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M4 22L10 2h4l6 20H4z" />
+      <line x1="10.5" y1="8" x2="13.5" y2="8" />
+      <line x1="9.5" y1="14" x2="14.5" y2="14" />
+      <line x1="12" y1="3" x2="12" y2="6" strokeDasharray="2 2" />
+      <line x1="12" y1="9" x2="12" y2="12" strokeDasharray="2 2" />
+      <line x1="12" y1="15" x2="12" y2="18" strokeDasharray="2 2" />
     </svg>
   ),
 
-  // Walkway: Concrete path in perspective with landscaping
+  // Walkway: Path flanked by plants
   walkway: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Walkway path in perspective */}
-      <path d="M20 60L28 8h8L44 60z" fill="currentColor" fillOpacity="0.15" />
-      {/* Walkway edges */}
-      <path d="M20 60L28 8" strokeWidth="2" />
-      <path d="M44 60L36 8" strokeWidth="2" />
-      {/* Concrete section lines */}
-      <path d="M21 52h22" strokeWidth="1.5" />
-      <path d="M23 44h18" strokeWidth="1.5" />
-      <path d="M25 36h14" strokeWidth="1.5" />
-      <path d="M26 28h12" strokeWidth="1.5" />
-      <path d="M27 20h10" strokeWidth="1.5" />
-      <path d="M28 12h8" strokeWidth="1.5" />
-      {/* Landscaping - left side bushes */}
-      <ellipse cx="10" cy="50" rx="6" ry="4" fill="currentColor" fillOpacity="0.2" />
-      <ellipse cx="12" cy="38" rx="5" ry="3" fill="currentColor" fillOpacity="0.15" />
-      <ellipse cx="14" cy="28" rx="4" ry="2.5" fill="currentColor" fillOpacity="0.1" />
-      {/* Landscaping - right side bushes */}
-      <ellipse cx="54" cy="50" rx="6" ry="4" fill="currentColor" fillOpacity="0.2" />
-      <ellipse cx="52" cy="38" rx="5" ry="3" fill="currentColor" fillOpacity="0.15" />
-      <ellipse cx="50" cy="28" rx="4" ry="2.5" fill="currentColor" fillOpacity="0.1" />
-      {/* Small flowers/plants */}
-      <circle cx="6" cy="56" r="2" fill="currentColor" fillOpacity="0.25" />
-      <circle cx="58" cy="56" r="2" fill="currentColor" fillOpacity="0.25" />
-      <circle cx="16" cy="46" r="1.5" fill="currentColor" fillOpacity="0.2" />
-      <circle cx="48" cy="46" r="1.5" fill="currentColor" fillOpacity="0.2" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <line x1="9" y1="2" x2="9" y2="22" />
+      <line x1="15" y1="2" x2="15" y2="22" />
+      <line x1="9" y1="7" x2="15" y2="7" />
+      <line x1="9" y1="12" x2="15" y2="12" />
+      <line x1="9" y1="17" x2="15" y2="17" />
+      <path d="M4 8c1-2 3-2 4 0" />
+      <path d="M4 14c1-2 3-2 4 0" />
+      <path d="M20 8c-1-2-3-2-4 0" />
+      <path d="M20 14c-1-2-3-2-4 0" />
     </svg>
   ),
 
-  // Sidewalk: Urban sidewalk with curb
+  // Sidewalk: Concrete pavement slabs
   sidewalk: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Sidewalk surface */}
-      <path d="M4 20h56v36H4z" fill="currentColor" fillOpacity="0.1" />
-      {/* Concrete joints/sections */}
-      <path d="M4 20h56" strokeWidth="2.5" />
-      <path d="M4 32h56M4 44h56" />
-      <path d="M20 20v36M36 20v36M52 20v36" />
-      {/* Curb */}
-      <path d="M4 56h56v4H4z" fill="currentColor" fillOpacity="0.25" />
-      {/* Tree silhouette */}
-      <circle cx="12" cy="10" r="6" fill="currentColor" fillOpacity="0.2" />
-      <path d="M12 16v4" strokeWidth="2" />
-      {/* Person walking */}
-      <circle cx="44" cy="26" r="2" fill="currentColor" />
-      <path d="M44 28v6M42 34l2 6M46 34l-2 6M42 32l-2 4M46 32l2 4" strokeWidth="1.5" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <rect x="2" y="5" width="20" height="14" rx="1" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <line x1="10" y1="5" x2="10" y2="12" />
+      <line x1="18" y1="5" x2="18" y2="12" />
+      <line x1="6" y1="12" x2="6" y2="19" />
+      <line x1="14" y1="12" x2="14" y2="19" />
     </svg>
   ),
 
-  // Reinforced Concrete: Concrete block with rebar grid
+  // Reinforced Concrete: Rebar grid with tie wires
   reinforced: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Concrete block 3D */}
-      <path d="M8 20l24-12 24 12v28l-24 12-24-12V20z" fill="currentColor" fillOpacity="0.1" />
-      <path d="M8 20l24 12 24-12" />
-      <path d="M32 32v28" />
-      {/* Rebar grid - horizontal */}
-      <path d="M14 26l18 9 18-9" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M14 34l18 9 18-9" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M14 42l18 9 18-9" stroke="currentColor" strokeWidth="2.5" />
-      {/* Rebar grid - vertical */}
-      <path d="M20 22v28" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M32 16v28" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M44 22v28" stroke="currentColor" strokeWidth="2.5" />
-      {/* Rebar ends visible */}
-      <circle cx="20" cy="50" r="1.5" fill="currentColor" />
-      <circle cx="32" cy="56" r="1.5" fill="currentColor" />
-      <circle cx="44" cy="50" r="1.5" fill="currentColor" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <line x1="5" y1="3" x2="5" y2="21" />
+      <line x1="12" y1="3" x2="12" y2="21" />
+      <line x1="19" y1="3" x2="19" y2="21" />
+      <line x1="3" y1="8" x2="21" y2="8" />
+      <line x1="3" y1="16" x2="21" y2="16" />
+      <circle cx="5" cy="8" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="19" cy="8" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="5" cy="16" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="19" cy="16" r="1.5" fill="currentColor" stroke="none" />
     </svg>
   ),
 
-  // Stamped Concrete: Decorative stone pattern
+  // Stamped Concrete: Staggered brick/stone pattern
   stamped: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Surface */}
-      <rect x="4" y="4" width="56" height="56" rx="4" fill="currentColor" fillOpacity="0.1" />
-      {/* Stone pattern - row 1 */}
-      <path d="M8 8h20v12H8z" fill="currentColor" fillOpacity="0.15" />
-      <path d="M32 8h12v12H32z" fill="currentColor" fillOpacity="0.2" />
-      <path d="M48 8h8v12h-8z" fill="currentColor" fillOpacity="0.15" />
-      {/* Stone pattern - row 2 */}
-      <path d="M8 24h12v14H8z" fill="currentColor" fillOpacity="0.2" />
-      <path d="M24 24h16v14H24z" fill="currentColor" fillOpacity="0.15" />
-      <path d="M44 24h12v14h-12z" fill="currentColor" fillOpacity="0.2" />
-      {/* Stone pattern - row 3 */}
-      <path d="M8 42h16v14H8z" fill="currentColor" fillOpacity="0.15" />
-      <path d="M28 42h12v14H28z" fill="currentColor" fillOpacity="0.2" />
-      <path d="M44 42h12v14h-12z" fill="currentColor" fillOpacity="0.15" />
-      {/* Grout lines */}
-      <path d="M4 20h56M4 38h56M4 56h56" strokeWidth="2" />
-      <path d="M28 4v16M44 4v16" strokeWidth="2" />
-      <path d="M20 20v18M40 20v18" strokeWidth="2" />
-      <path d="M24 38v22M40 38v22" strokeWidth="2" />
-      {/* Texture dots */}
-      <circle cx="16" cy="14" r="1" fill="currentColor" fillOpacity="0.3" />
-      <circle cx="36" cy="30" r="1" fill="currentColor" fillOpacity="0.3" />
-      <circle cx="50" cy="48" r="1" fill="currentColor" fillOpacity="0.3" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <rect x="2" y="2" width="20" height="20" rx="1" />
+      <line x1="2" y1="8.5" x2="22" y2="8.5" />
+      <line x1="9" y1="2" x2="9" y2="8.5" />
+      <line x1="17" y1="2" x2="17" y2="8.5" />
+      <line x1="2" y1="15" x2="22" y2="15" />
+      <line x1="13" y1="8.5" x2="13" y2="15" />
+      <line x1="7" y1="15" x2="7" y2="22" />
+      <line x1="17" y1="15" x2="17" y2="22" />
     </svg>
   ),
 
-  // Other: Construction tools (trowel and level)
+  // And More: Concrete trowel
   other: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      {/* Trowel */}
-      <path d="M8 44l20-20 8 8-20 20z" fill="currentColor" fillOpacity="0.15" />
-      <path d="M28 24l4-4 8 8-4 4" />
-      <path d="M36 20l12-12" strokeWidth="3" />
-      {/* Level tool */}
-      <rect x="20" y="48" width="36" height="8" rx="2" fill="currentColor" fillOpacity="0.1" />
-      <rect x="20" y="48" width="36" height="8" rx="2" />
-      <rect x="34" y="50" width="8" height="4" rx="1" />
-      <circle cx="38" cy="52" r="1" fill="currentColor" />
-      {/* Plus symbol */}
-      <circle cx="12" cy="16" r="8" fill="currentColor" fillOpacity="0.1" />
-      <path d="M12 12v8M8 16h8" strokeWidth="2.5" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M5 21l-2-2 6-6 2 2-6 6z" />
+      <line x1="11" y1="13" x2="16" y2="8" />
+      <path d="M15 4l5 5-4 4-5-5 1.5-3L15 4z" />
     </svg>
   ),
 };
