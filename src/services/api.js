@@ -174,3 +174,19 @@ export async function deleteUser(userId) {
         method: 'DELETE',
     });
 }
+
+// =============================================================================
+// Admin Utilities
+// =============================================================================
+
+export async function getCloudinaryUsage() {
+    const data = await apiRequest('/admin/cloudinary-usage');
+    return data.usage;
+}
+
+export async function toggleProjectVisibility(projectId, visible) {
+    return apiRequest(`/projects/${projectId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ visible }),
+    });
+}

@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useAdminDialogs } from '../../hooks/useAdminDialogs';
-import { AdminHeader, ProjectCard, UsersTable } from '../../components/admin';
+import { AdminHeader, ProjectCard, UsersTable, CloudinaryStorageWidget } from '../../components/admin';
 import {
     getProjects,
     createProject,
@@ -19,6 +19,7 @@ import {
     createUser,
     updateUser,
     deleteUser,
+    toggleProjectVisibility,
 } from '../../services/api';
 import { Image, Users, Plus, Loader2 } from 'lucide-react';
 
@@ -131,6 +132,18 @@ export default function AdminDashboard() {
             dialogs.showSuccess('Deleted!');
         } catch (error) {
             dialogs.handleError(error, 'Failed to delete project');
+        }
+    }
+
+    async function handleToggleVisibility(project, newVisible) {
+        // Optimistic update
+        setProjects(projects.map(p => p.id === project.id ? { ...p, visible: newVisible } : p));
+        try {
+            await toggleProjectVisibility(project.id, newVisible);
+        } catch (error) {
+            // Revert on failure
+            setProjects(projects.map(p => p.id === project.id ? { ...p, visible: project.visible } : p));
+            dialogs.handleError(error, 'Failed to update visibility');
         }
     }
 
@@ -397,6 +410,7 @@ export default function AdminDashboard() {
                 {/* Projects Tab */}
                 {(activeTab === 'projects' || !isAdmin) && (
                     <div>
+                        {isAdmin && <CloudinaryStorageWidget />}
                         <SectionHeader
                             title="Gallery Projects"
                             onAdd={isAdmin || isEditor ? handleCreateProject : null}
@@ -424,6 +438,7 @@ export default function AdminDashboard() {
                                         onUploadPhoto={(type) => openFileUpload(project.id, type)}
                                         onDeletePhoto={(photo) => handleDeletePhoto(project.id, photo)}
                                         onReorderPhoto={(index, dir) => handleReorderPhoto(project.id, index, dir)}
+                                        onToggleVisibility={(newVisible) => handleToggleVisibility(project, newVisible)}
                                     />
                                 ))}
                             </div>
@@ -444,8 +459,8 @@ function TabButton({ active, onClick, icon, label }) {
         <button
             onClick={onClick}
             className={`pb-3 px-2 font-medium transition-colors ${active
-                    ? 'text-red-500 border-b-2 border-red-500'
-                    : 'text-gray-400 hover:text-white'
+                ? 'text-red-500 border-b-2 border-red-500'
+                : 'text-gray-400 hover:text-white'
                 }`}
         >
             {icon}

@@ -1,7 +1,7 @@
 /**
  * Project Card Component - displays a single project with photos
  */
-import { Image, Edit, Trash2, ChevronDown, ChevronUp, Upload, Plus, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Image, Edit, Trash2, ChevronDown, ChevronUp, Upload, Plus, X, ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react';
 
 export default function ProjectCard({
     project,
@@ -14,13 +14,15 @@ export default function ProjectCard({
     onUploadPhoto,
     onDeletePhoto,
     onReorderPhoto,
+    onToggleVisibility,
 }) {
     const photoCount = (project.photos?.length || 0) + (project.beforePhoto ? 1 : 0) + (project.afterPhoto ? 1 : 0);
     const hasNoPhotos = !project.beforePhoto && !project.afterPhoto && (!project.photos || project.photos.length === 0);
     const thumbnail = project.beforePhoto || project.afterPhoto || project.photos?.[0];
 
     return (
-        <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+        <div className={`bg-gray-800 rounded-xl border overflow-hidden transition-colors ${project.visible === false ? 'border-gray-600 opacity-60' : 'border-gray-700'
+            }`}>
             {/* Header */}
             <div
                 className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-750"
@@ -35,7 +37,14 @@ export default function ProjectCard({
                         )}
                     </div>
                     <div>
-                        <h3 className="text-white font-semibold">{project.title}</h3>
+                        <div className="flex items-center gap-2">
+                            <h3 className="text-white font-semibold">{project.title}</h3>
+                            {project.visible === false && (
+                                <span className="text-xs bg-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
+                                    Hidden
+                                </span>
+                            )}
+                        </div>
                         <p className="text-gray-400 text-sm">
                             {project.location || 'No location'} • {photoCount} photos
                         </p>
@@ -50,6 +59,21 @@ export default function ProjectCard({
                         <span className="text-amber-500 text-sm mr-2 animate-pulse">
                             Click to add photos →
                         </span>
+                    )}
+                    {isAdmin && (
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onToggleVisibility(project.visible === false); }}
+                            className={`p-2 rounded-lg transition-colors ${project.visible === false
+                                    ? 'text-gray-500 hover:text-amber-400 hover:bg-gray-700'
+                                    : 'text-green-400 hover:text-gray-400 hover:bg-gray-700'
+                                }`}
+                            title={project.visible === false ? 'Hidden — click to show' : 'Visible — click to hide'}
+                        >
+                            {project.visible === false
+                                ? <EyeOff className="w-5 h-5" />
+                                : <Eye className="w-5 h-5" />
+                            }
+                        </button>
                     )}
                     {isAdmin && (
                         <button
