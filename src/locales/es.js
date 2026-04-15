@@ -57,8 +57,20 @@ export default {
             other: 'Otro',
             message: 'Detalles del Proyecto',
             messagePlaceholder: 'Cuéntenos sobre su proyecto...',
+            address: 'Dirección',
+            street: 'Calle y Número',
+            streetPlaceholder: '123 Calle Principal',
+            apt: 'Apt / Unidad',
+            aptPlaceholder: 'Apt 4B (opcional)',
+            city: 'Ciudad',
+            cityPlaceholder: 'Denver',
+            state: 'Estado',
+            selectState: 'Selecciona un estado...',
+            zip: 'Código Postal',
+            zipPlaceholder: '80201',
             send: 'Enviar Mensaje',
             sending: 'Enviando...',
+            captchaError: 'Por favor complete la verificación CAPTCHA',
         },
     },
     validation: {
@@ -74,7 +86,11 @@ export default {
         successMessage: 'Gracias por contactarnos. Nos comunicaremos con usted pronto.',
         errorTitle: 'Error al Enviar',
         errorMessage: 'Hubo un error al enviar su mensaje. Por favor intente nuevamente más tarde o contáctenos directamente.',
-        spamDetected: 'Spam detectado. Por favor intente nuevamente.'
+        spamDetected: 'Spam detectado. Por favor intente nuevamente.',
+        streetError: 'Por favor ingrese una dirección de calle válida',
+        cityError: 'Por favor ingrese una ciudad',
+        stateError: 'Por favor seleccione un estado',
+        zipError: 'Por favor ingrese un código postal válido (ej: 12345)'
     },
     footer: {
         description: 'Soluciones profesionales de concreto para propiedades residenciales y comerciales',

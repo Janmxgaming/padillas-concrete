@@ -88,6 +88,16 @@ export const isValidService = (service) => {
 };
 
 /**
+ * Validate US ZIP code
+ * @param {string} zip
+ * @returns {boolean}
+ */
+export const isValidZip = (zip) => {
+  if (!zip) return false;
+  return /^\d{5}(-\d{4})?$/.test(zip.trim());
+};
+
+/**
  * Validate all form data
  * @param {Object} formData - Form data to validate
  * @returns {Object} Object with isValid boolean and errors object
@@ -115,6 +125,22 @@ export const validateFormData = (formData) => {
     errors.message = 'validation.messageError';
   }
 
+  if (!formData.street || formData.street.trim().length < 3) {
+    errors.street = 'validation.streetError';
+  }
+
+  if (!formData.city || formData.city.trim().length < 2) {
+    errors.city = 'validation.cityError';
+  }
+
+  if (!formData.state) {
+    errors.state = 'validation.stateError';
+  }
+
+  if (!isValidZip(formData.zip)) {
+    errors.zip = 'validation.zipError';
+  }
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors
@@ -129,12 +155,14 @@ export const validateFormData = (formData) => {
 export const sanitizeFormData = (formData) => {
   return {
     name: sanitizeText(formData.name),
-    // Email is only trimmed and lowercased, not sanitized with sanitizeText
-    // because valid emails can contain characters like periods, hyphens, etc.
-    // The isValidEmail function already ensures the format is safe
     email: formData.email.trim().toLowerCase(),
     phone: formData.phone.trim(),
     service: formData.service,
-    message: sanitizeText(formData.message)
+    message: sanitizeText(formData.message),
+    street: sanitizeText(formData.street),
+    apt: sanitizeText(formData.apt || ''),
+    city: sanitizeText(formData.city),
+    state: (formData.state || '').trim(),
+    zip: (formData.zip || '').trim(),
   };
 };

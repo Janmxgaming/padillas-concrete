@@ -190,3 +190,25 @@ export async function toggleProjectVisibility(projectId, visible) {
         body: JSON.stringify({ visible }),
     });
 }
+
+// =============================================================================
+// Clients API (Contact Form Submissions - Admin only)
+// =============================================================================
+
+export async function getClients() {
+    const data = await apiRequest('/clients');
+    return data.clients || [];
+}
+
+export async function updateClientStatus(clientId, status) {
+    return apiRequest(`/clients/${clientId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ status }),
+    });
+}
+
+export async function deleteClient(clientId) {
+    return apiRequest(`/clients/${clientId}`, {
+        method: 'DELETE',
+    });
+}

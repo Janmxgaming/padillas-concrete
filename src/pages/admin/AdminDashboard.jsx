@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useAdminDialogs } from '../../hooks/useAdminDialogs';
-import { AdminHeader, ProjectCard, UsersTable, CloudinaryStorageWidget } from '../../components/admin';
+import { AdminHeader, ProjectCard, UsersTable, CloudinaryStorageWidget, ClientsTable } from '../../components/admin';
 import {
     getProjects,
     createProject,
@@ -20,8 +20,12 @@ import {
     updateUser,
     deleteUser,
     toggleProjectVisibility,
+    getClients,
+    updateClientStatus,
+    deleteClient,
 } from '../../services/api';
-import { Image, Users, Plus, Loader2 } from 'lucide-react';
+import { Image, Users, Plus, Loader2, MessageSquare } from 'lucide-react';
+import { showConfirm } from '../../utils/alerts';
 
 export default function AdminDashboard() {
     const { user, logout, updateUser: updateAuthUser } = useAuth();
@@ -30,6 +34,7 @@ export default function AdminDashboard() {
     // State
     const [projects, setProjects] = useState([]);
     const [users, setUsers] = useState([]);
+    const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
     const [expandedProject, setExpandedProject] = useState(null);
     const [activeTab, setActiveTab] = useState('projects');
@@ -54,7 +59,10 @@ export default function AdminDashboard() {
     // Load data
     useEffect(() => {
         loadProjects();
-        if (isAdmin) loadUsers();
+        if (isAdmin) {
+            loadUsers();
+            loadClients();
+        }
     }, [isAdmin]);
 
     // Force password change on first login
@@ -85,6 +93,15 @@ export default function AdminDashboard() {
             setUsers(data);
         } catch (error) {
             console.error('Failed to load users:', error);
+        }
+    }
+
+    async function loadClients() {
+        try {
+            const data = await getClients();
+            setClients(data);
+        } catch (error) {
+            console.error('Failed to load clients:', error);
         }
     }
 
@@ -344,6 +361,37 @@ export default function AdminDashboard() {
     }
 
     // ==========================================================================
+    // Client Actions
+    // ==========================================================================
+
+    async function handleUpdateClientStatus(clientId, status) {
+        try {
+            const result = await updateClientStatus(clientId, status);
+            setClients(clients.map(c => c.id === clientId ? result.client : c));
+        } catch (error) {
+            dialogs.handleError(error, 'Failed to update client status');
+        }
+    }
+
+    async function handleDeleteClient(clientId, clientName) {
+        const confirmed = await showConfirm(
+            'Delete Submission',
+            `Delete submission from "${clientName}"? This cannot be undone.`,
+            'Yes, delete'
+        );
+        if (!confirmed) return;
+
+        try {
+            dialogs.showLoading('Deleting...');
+            await deleteClient(clientId);
+            setClients(clients.filter(c => c.id !== clientId));
+            dialogs.showSuccess('Deleted!');
+        } catch (error) {
+            dialogs.handleError(error, 'Failed to delete client submission');
+        }
+    }
+
+    // ==========================================================================
     // Render
     // ==========================================================================
 
@@ -386,6 +434,12 @@ export default function AdminDashboard() {
                             label="Gallery Projects"
                         />
                         <TabButton
+                            active={activeTab === 'clients'}
+                            onClick={() => setActiveTab('clients')}
+                            icon={<MessageSquare className="w-5 h-5 inline mr-2" />}
+                            label={`Clients${clients.filter(c => c.status === 'pending').length > 0 ? ` (${clients.filter(c => c.status === 'pending').length})` : ''}`}
+                        />
+                        <TabButton
                             active={activeTab === 'users'}
                             onClick={() => setActiveTab('users')}
                             icon={<Users className="w-5 h-5 inline mr-2" />}
@@ -403,6 +457,18 @@ export default function AdminDashboard() {
                             currentUserId={user?.id}
                             onEdit={handleEditUser}
                             onDelete={handleDeleteUser}
+                        />
+                    </div>
+                )}
+
+                {/* Clients Tab */}
+                {isAdmin && activeTab === 'clients' && (
+                    <div>
+                        <SectionHeader title="Client Submissions" />
+                        <ClientsTable
+                            clients={clients}
+                            onUpdateStatus={handleUpdateClientStatus}
+                            onDelete={handleDeleteClient}
                         />
                     </div>
                 )}

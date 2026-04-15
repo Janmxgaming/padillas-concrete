@@ -57,8 +57,20 @@ export default {
             other: 'Other',
             message: 'Project Details',
             messagePlaceholder: 'Tell us about your project...',
+            address: 'Address',
+            street: 'Street Address',
+            streetPlaceholder: '123 Main St',
+            apt: 'Apt / Unit',
+            aptPlaceholder: 'Apt 4B (optional)',
+            city: 'City',
+            cityPlaceholder: 'Denver',
+            state: 'State',
+            selectState: 'Select a state...',
+            zip: 'ZIP Code',
+            zipPlaceholder: '80201',
             send: 'Send Message',
             sending: 'Sending...',
+            captchaError: 'Please complete the CAPTCHA verification',
         },
     },
     validation: {
@@ -74,7 +86,11 @@ export default {
         successMessage: 'Thank you for contacting us. We will get back to you soon.',
         errorTitle: 'Sending Failed',
         errorMessage: 'There was an error sending your message. Please try again later or contact us directly.',
-        spamDetected: 'Spam detected. Please try again.'
+        spamDetected: 'Spam detected. Please try again.',
+        streetError: 'Please enter a valid street address',
+        cityError: 'Please enter a city',
+        stateError: 'Please select a state',
+        zipError: 'Please enter a valid ZIP code (e.g. 12345)'
     },
     footer: {
         description: 'Professional concrete solutions for residential and commercial properties',
