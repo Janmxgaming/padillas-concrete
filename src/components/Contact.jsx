@@ -110,7 +110,7 @@ function TurnstileWidget({ onVerify, onExpire }) {
         widgetIdRef.current = null;
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div ref={containerRef} className="cf-turnstile" />;

@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { Trash2, CheckCircle, XCircle, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 
 const STATUS_CONFIG = {
-    pending:  { label: 'Pending',  color: 'bg-yellow-100 text-yellow-800 border-yellow-300', Icon: Clock },
-    answered: { label: 'Answered', color: 'bg-green-100  text-green-800  border-green-300',  Icon: CheckCircle },
-    rejected: { label: 'Rejected', color: 'bg-red-100    text-red-800    border-red-300',    Icon: XCircle },
+    pending: { label: 'Pending', color: 'bg-yellow-100 text-yellow-800 border-yellow-300', Icon: Clock },
+    answered: { label: 'Answered', color: 'bg-green-100  text-green-800  border-green-300', Icon: CheckCircle },
+    rejected: { label: 'Rejected', color: 'bg-red-100    text-red-800    border-red-300', Icon: XCircle },
 };
 
 function StatusBadge({ status }) {
@@ -53,11 +53,10 @@ export default function ClientsTable({ clients, onUpdateStatus, onDelete }) {
                     <button
                         key={f}
                         onClick={() => setFilter(f)}
-                        className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
-                            filter === f
+                        className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${filter === f
                                 ? 'bg-red-600 text-white border-red-600'
                                 : 'bg-gray-800 text-gray-300 border-gray-600 hover:border-red-500'
-                        }`}
+                            }`}
                     >
                         {f === 'all' ? `All (${clients.length})` : `${STATUS_CONFIG[f].label} (${clients.filter(c => c.status === f).length})`}
                     </button>
